@@ -31,7 +31,7 @@ export default {
                 password: this.password
             }
 
-            axios.post("https://quebrados-api.herokuapp.com/user/register", datosDelRegistro)
+            axios.post("https://quebrados-api2.herokuapp.com/user/register", datosDelRegistro)
             .then(response =>{
                 alert(response.data.respuesta)
                 this.$router.push({name: "autenticar_usuario"})

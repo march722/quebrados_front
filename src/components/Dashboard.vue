@@ -53,7 +53,7 @@ export default {
 
     created: function(){
         let mivariable=this;
-        axios.get("https://quebrados-api.herokuapp.com/user/dashboard/" + this.user )
+        axios.get("https://quebrados-api2.herokuapp.com/user/dashboard/" + this.user )
         .then(response =>{
             mivariable.netoUsuario=response.data.total
         })
