@@ -66,7 +66,6 @@ export default {
             .catch((error) => {
                 alert("No se pudo realizar el registro");
             })
-            this.$router.push({name: "registro_mov"});
         },
         cerrarSesion: function(){
             this.$router.push({name: "autenticar_usuario"});
