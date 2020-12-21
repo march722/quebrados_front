@@ -13,6 +13,7 @@
             <h2>Tu balance es de ${{netoUsuario}}</h2>
             <h1 v-if="netoUsuario>0" id="positivo">No tienes deudas en el momento</h1>
             <h1 v-if="netoUsuario<0" id="negativo">Cuida de tu presupuesto! </h1>
+            <button v-on:click="eliminarCuenta">Eliminar Cuenta</button>
         </div>
     </div>
 </template>
@@ -45,6 +46,17 @@ export default {
             this.$router.push({name: "consultar_mov"});
             }    
         },
+        eliminarCuenta: function(){
+            axios.delete("http://127.0.0.1:8000/user/delete/" + this.user)
+            .then(response => {
+                alert("Usuario eliminado correctamente");
+            })
+            .catch((error) => {
+                alert("No se pudo eliminar el usuario");
+            })
+            this.$router.push({name: "autenticar_usuario"});
+            localStorage.setItem('current_user', null)
+        },
         cerrarSesion: function(){
             this.$router.push({name: "autenticar_usuario"});
             localStorage.setItem('current_user', null)
@@ -53,7 +65,7 @@ export default {
 
     created: function(){
         let mivariable=this;
-        axios.get("https://quebrados-api2.herokuapp.com/user/dashboard/" + this.user )
+        axios.get("http://127.0.0.1:8000/user/dashboard/" + this.user )
         .then(response =>{
             mivariable.netoUsuario=response.data.total
         })
